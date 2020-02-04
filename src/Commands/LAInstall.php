@@ -107,33 +107,20 @@ class LAInstall extends Command
                 // Controllers
                 $this->line("\n" . 'Generating Controllers...');
                 $this->copyFolder($from . "/app/Controllers/Auth", $to . "/app/Http/Controllers/Auth");
-                if(LAHelper::laravel_ver() == 5.3 || LAHelper::laravel_ver() == 5.4) {
-                    // Delete Redundant Controllers
-                    unlink($to . "/app/Http/Controllers/Auth/PasswordController.php");
-                    unlink($to . "/app/Http/Controllers/Auth/AuthController.php");
-                } else {
-                    unlink($to . "/app/Http/Controllers/Auth/ForgotPasswordController.php");
-                    unlink($to . "/app/Http/Controllers/Auth/LoginController.php");
-                    unlink($to . "/app/Http/Controllers/Auth/RegisterController.php");
-                    unlink($to . "/app/Http/Controllers/Auth/ResetPasswordController.php");
-                }
+                // Delete Redundant Controllers
+                unlink($to . "/app/Http/Controllers/Auth/PasswordController.php");
+                unlink($to . "/app/Http/Controllers/Auth/AuthController.php");
+
                 $this->replaceFolder($from . "/app/Controllers/LA", $to . "/app/Http/Controllers/LA");
-                if(LAHelper::laravel_ver() == 5.3 || LAHelper::laravel_ver() == 5.4) {
-                    $this->copyFile($from . "/app/Controllers/Controller.5.3.php", $to . "/app/Http/Controllers/Controller.php");
-                } else {
-                    $this->copyFile($from . "/app/Controllers/Controller.php", $to . "/app/Http/Controllers/Controller.php");
-                }
+
+                $this->copyFile($from . "/app/Controllers/Controller.5.3.php", $to . "/app/Http/Controllers/Controller.php");
                 $this->copyFile($from . "/app/Controllers/HomeController.php", $to . "/app/Http/Controllers/HomeController.php");
-                
+                //
                 // Middleware
-                if(LAHelper::laravel_ver() == 5.3 || LAHelper::laravel_ver() == 5.4) {
-                    $this->copyFile($from . "/app/Middleware/RedirectIfAuthenticated.php", $to . "/app/Http/Middleware/RedirectIfAuthenticated.php");
-                }
+                $this->copyFile($from . "/app/Middleware/RedirectIfAuthenticated.php", $to . "/app/Http/Middleware/RedirectIfAuthenticated.php");
 
                 // AppServiceProvider - https://laravel-news.com/laravel-5-4-key-too-long-error
-                if(LAHelper::laravel_ver() == 5.4) {
-                    $this->copyFile($from . "/app/Providers/AppServiceProvider.php", $to . "/app/Providers/AppServiceProvider.php");
-                }
+                $this->copyFile($from . "/app/Providers/AppServiceProvider.php", $to . "/app/Providers/AppServiceProvider.php");
 
                 // Config
                 $this->line('Generating Config...');
@@ -147,11 +134,7 @@ class LAInstall extends Command
                 }
                 foreach($this->modelsInstalled as $model) {
                     if($model == "User") {
-                        if(LAHelper::laravel_ver() == 5.3 || LAHelper::laravel_ver() == 5.4) {
                             $this->copyFile($from . "/app/Models/" . $model . "5.3.php", $to . "/app/" . $model . ".php");
-                        } else {
-                            $this->copyFile($from . "/app/Models/" . $model . ".php", $to . "/app/" . $model . ".php");
-                        }
                     } else if($model == "Role" || $model == "Permission") {
                         $this->copyFile($from . "/app/Models/" . $model . ".php", $to . "/app/" . $model . ".php");
                     } else {
@@ -255,27 +238,16 @@ class LAInstall extends Command
                 // Routes
                 $this->line('Appending routes...');
                 //if(!$this->fileContains($to."/app/Http/routes.php", "laraadmin.adminRoute")) {
-                if(LAHelper::laravel_ver() == 5.3 || LAHelper::laravel_ver() == 5.4) {
-                    if(LAHelper::getLineWithString($to . "/routes/web.php", "require __DIR__.'/admin_routes.php';") == -1) {
-                        $this->appendFile($from . "/app/routes.php", $to . "/routes/web.php");
-                    }
-                    $this->copyFile($from . "/app/admin_routes.php", $to . "/routes/admin_routes.php");
-                } else {
-                    if(LAHelper::getLineWithString($to . "/app/Http/routes.php", "require __DIR__.'/admin_routes.php';") == -1) {
-                        $this->appendFile($from . "/app/routes.php", $to . "/app/Http/routes.php");
-                    }
-                    $this->copyFile($from . "/app/admin_routes.php", $to . "/app/Http/admin_routes.php");
+                if(LAHelper::getLineWithString($to . "/routes/web.php", "require __DIR__.'/admin_routes.php';") == -1) {
+                    $this->appendFile($from . "/app/routes.php", $to . "/routes/web.php");
                 }
+                $this->copyFile($from . "/app/admin_routes.php", $to . "/routes/admin_routes.php");
                 
                 // tests
                 $this->line('Generating tests...');
                 $this->copyFolder($from . "/tests", $to . "/tests");
-                if(LAHelper::laravel_ver() == 5.3 || LAHelper::laravel_ver() == 5.4) {
-                    unlink($to . '/tests/TestCase.php');
-                    rename($to . '/tests/TestCase5.3.php', $to . '/tests/TestCase.php');
-                } else {
-                    unlink($to . '/tests/TestCase5.3.php');
-                }
+                unlink($to . '/tests/TestCase.php');
+                rename($to . '/tests/TestCase5.3.php', $to . '/tests/TestCase.php');
                 
                 // Utilities
                 $this->line('Generating Utilities...');
