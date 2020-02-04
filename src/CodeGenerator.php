@@ -233,7 +233,7 @@ class CodeGenerator
     {
         $filesystem = new Filesystem();
         
-        if(starts_with($table, "create_")) {
+        if(Str::startsWith($table, "create_")) {
             $tname = str_replace("create_", "", $table);
             $table = str_replace("_table", "", $tname);
         }
@@ -243,7 +243,7 @@ class CodeGenerator
         $tableS = Str::singular(strtolower($table));
         $migrationName = 'create_' . $tableP . '_table';
         $migrationFileName = date("Y_m_d_His_") . $migrationName . ".php";
-        $migrationClassName = ucfirst(camel_case($migrationName));
+        $migrationClassName = ucfirst(Str::camel($migrationName));
         $dbTableName = $tableP;
         $moduleName = ucfirst(Str::plural($table));
         
@@ -277,7 +277,7 @@ class CodeGenerator
                     }
                     $dvalue = "";
                     if($field['defaultvalue'] != "") {
-                        if(starts_with($field['defaultvalue'], "[")) {
+                        if(Str::startsWith($field['defaultvalue'], "[")) {
                             $dvalue = $field['defaultvalue'];
                         } else {
                             $dvalue = '"' . $field['defaultvalue'] . '"';
@@ -297,7 +297,7 @@ class CodeGenerator
                     }
                     $values = "";
                     if($field['popup_vals'] != "") {
-                        if(starts_with($field['popup_vals'], "[")) {
+                        if(Str::startsWith($field['popup_vals'], "[")) {
                             $values = $field['popup_vals'];
                         } else {
                             $values = '"' . $field['popup_vals'] . '"';
@@ -330,7 +330,7 @@ class CodeGenerator
                 $fileExists = false;
                 $fileExistName = "";
                 foreach($mfiles as $mfile) {
-                    if(str_contains($mfile, $migrationName)) {
+                    if(Str::contains($mfile, $migrationName)) {
                         $fileExists = true;
                         $fileExistName = $mfile;
                     }
@@ -393,7 +393,7 @@ class CodeGenerator
         $config = array();
         $config = (object)$config;
         
-        if(starts_with($module, "create_")) {
+        if(Str::startsWith($module, "create_")) {
             $tname = str_replace("create_", "", $module);
             $module = str_replace("_table", "", $tname);
         }

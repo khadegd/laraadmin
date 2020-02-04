@@ -153,8 +153,8 @@ class ModuleController extends Controller
         $mfiles = scandir(base_path('database/migrations/'));
         $fileExistName = "";
         foreach($mfiles as $mfile) {
-            if(str_contains($mfile, "create_" . $module->name_db . "_table")) {
-                $migrationClassName = ucfirst(camel_case("create_" . $module->name_db . "_table"));
+            if(Str::contains($mfile, "create_" . $module->name_db . "_table")) {
+                $migrationClassName = ucfirst(Str::camel("create_" . $module->name_db . "_table"));
                 
                 $templateDirectory = __DIR__ . '/../stubs';
                 $migrationData = file_get_contents($templateDirectory . "/migration_removal.stub");
@@ -457,7 +457,7 @@ class ModuleController extends Controller
         $mfiles = scandir(base_path('database/migrations/'));
         $fileExistName = "";
         foreach($mfiles as $mfile) {
-            if(str_contains($mfile, "create_" . $module->name_db . "_table")) {
+            if(Str::contains($mfile, "create_" . $module->name_db . "_table")) {
                 $arr[] = 'database/migrations/' . $mfile;
             }
         }

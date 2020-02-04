@@ -13,6 +13,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Response as FacadeResponse;
 use Illuminate\Support\Facades\Input;
 use Collective\Html\FormFacade as Form;
@@ -184,7 +185,7 @@ class UploadsController extends Controller
 					]);
 					// apply unique random hash to file
 					while(true) {
-						$hash = strtolower(str_random(20));
+						$hash = strtolower(Str::random(20));
 						if(!Upload::where("hash", $hash)->count()) {
 							$upload->hash = $hash;
 							break;
