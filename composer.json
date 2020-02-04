@@ -8,16 +8,16 @@
         "issues": "https://github.com/dwijitsolutions/laraadmin/issues",
         "source": "https://github.com/dwijitsolutions/laraadmin"
     },
-    "version": "1.0.40",
+    "version": "2.0.0",
     "require": {
-        "illuminate/support": "5.*",
-        "laravelcollective/html": "^5.2|^5.1",
-        "illuminate/container": "^5.2|^5.1",
-        "yajra/laravel-datatables-oracle": "~6.0",
-        "creativeorange/gravatar": "^1.0",
-        "doctrine/dbal": "~2.3",
-        "zizaco/entrust": "1.7.0",
-        "spatie/laravel-backup": "^3.0.0"
+        "illuminate/support": "6.*",
+        "laravelcollective/html": "6.*",
+        "illuminate/container": "6.*",
+        "yajra/laravel-datatables-oracle": "9.*",
+        "creativeorange/gravatar": "1.*",
+        "doctrine/dbal": "2.*",
+        "trebol/entrust": "0.*",
+        "spatie/laravel-backup": "6.*"
     },
     "authors": [
         {
