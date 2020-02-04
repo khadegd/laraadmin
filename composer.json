@@ -16,7 +16,7 @@
         "yajra/laravel-datatables-oracle": "9.*",
         "creativeorange/gravatar": "1.*",
         "doctrine/dbal": "2.*",
-        "trebol/entrust": "0.*",
+        "gghughunishvili/entrust": "2.*",
         "spatie/laravel-backup": "6.*"
     },
     "authors": [
@@ -35,5 +35,12 @@
         },
         "files": [
         ]
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Dwij\\Laraadmin\\LAProvider"
+            ]
+        }
     }
 }

@@ -11,6 +11,7 @@ namespace Dwij\Laraadmin\Helpers;
 
 use DB;
 use Log;
+use Illuminate\Support\Str;
 
 use Dwij\Laraadmin\Models\Module;
 
@@ -488,11 +489,11 @@ class LAHelper
     {
         $var = \App::VERSION();
         
-        if(starts_with($var, "5.2")) {
+        if(Str::startsWith($var, "5.2")) {
             return 5.2;
-        } else if(starts_with($var, "5.3")) {
+        } elseif(Str::startsWith($var, "5.3")) {
             return 5.3;
-        } else if(substr_count($var, ".") == 3) {
+        } elseif(substr_count($var, ".") == 3) {
             $var = substr($var, 0, strrpos($var, "."));
             return $var . "-str";
         } else {
