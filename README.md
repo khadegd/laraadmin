@@ -1,6 +1,6 @@
 <p align="center">
   <img src="http://laraadmin.com/img/laraadmin-256.png">
-  <h1 align="center" style="margin-top:5px;">LaraAdmin 1.0</h1>
+  <h1 align="center" style="margin-top:5px;">LaraAdmin 2.0</h1>
 </p>
 
 [![Total Downloads](https://poser.pugx.org/dwij/laraadmin/d/total.svg)](https://packagist.org/packages/dwij/laraadmin)
@@ -63,7 +63,7 @@ LaraAdmin is open-sourced software built by Dwij IT Solutions and contributors a
 
 ### Credits:
 - Ganesh Bhosale https://github.com/gdbhosale
-- Ganesh Khade https://github.com/moraya-re
+- Ganesh Khade https://github.com/khadegd
 - https://github.com/almasaeed2010/AdminLTE
 - https://github.com/acacha/adminlte-laravel
 - https://github.com/yajra/laravel-datatables
