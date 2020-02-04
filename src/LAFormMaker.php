@@ -9,6 +9,8 @@
 
 namespace Dwij\Laraadmin;
 
+use Illuminate\Support\Str;
+
 use Schema;
 use Collective\Html\FormFacade as Form;
 use Dwij\Laraadmin\Models\Module;
@@ -465,7 +467,7 @@ class LAFormMaker
                     $out .= '<label for="' . $field_name . '">' . $label . $required_ast . ' :</label>';
                     
                     unset($params['data-rule-maxlength']);
-                    $params['data-placeholder'] = "Select multiple " . str_plural($label);
+                    $params['data-placeholder'] = "Select multiple " . Str::plural($label);
                     unset($params['placeholder']);
                     $params['multiple'] = "true";
                     $params['rel'] = "select2";
@@ -571,7 +573,7 @@ class LAFormMaker
                     }
                     $params['multiple'] = "true";
                     $params['rel'] = "taginput";
-                    $params['data-placeholder'] = "Add multiple " . str_plural($label);
+                    $params['data-placeholder'] = "Add multiple " . Str::plural($label);
                     unset($params['placeholder']);
                     
                     // Override the edit value
@@ -660,7 +662,7 @@ class LAFormMaker
             
             // Get Module / Table Name
             $json = str_ireplace("@", "", $json);
-            $table_name = strtolower(str_plural($json));
+            $table_name = strtolower(Str::plural($json));
             
             // Search Module
             $module = Module::getByTable($table_name);
@@ -669,8 +671,8 @@ class LAFormMaker
             } else {
                 // Search Table if no module found
                 if(Schema::hasTable($table_name)) {
-                    if(file_exists(resource_path('app/Models/' . ucfirst(str_singular($table_name) . ".php")))) {
-                        $model = "App\\Models\\" . ucfirst(str_singular($table_name));
+                    if(file_exists(resource_path('app/Models/' . ucfirst(Str::singular($table_name) . ".php")))) {
+                        $model = "App\\Models\\" . ucfirst(Str::singular($table_name));
                         $result = $model::all();
                     } else {
                         $result = \DB::table($table_name)->get();
