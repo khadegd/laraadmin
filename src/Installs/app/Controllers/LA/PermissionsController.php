@@ -15,7 +15,7 @@ use App\Http\Requests;
 use Auth;
 use DB;
 use Validator;
-use Datatables;
+use DataTables;
 use Collective\Html\FormFacade as Form;
 use Dwij\Laraadmin\Models\Module;
 use Dwij\Laraadmin\Models\ModuleFields;
@@ -208,7 +208,7 @@ class PermissionsController extends Controller
 		$listing_cols = Module::getListingColumns('Permissions');
 
 		$values = DB::table('permissions')->select($listing_cols)->whereNull('deleted_at');
-		$out = Datatables::of($values)->make();
+		$out = DataTables::of($values)->make();
 		$data = $out->getData();
 
 		$fields_popup = ModuleFields::getModuleFields('Permissions');

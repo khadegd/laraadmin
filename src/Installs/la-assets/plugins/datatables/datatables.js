@@ -24489,7 +24489,7 @@ DataTable.select.init = function ( dt ) {
 	ctx._select.className = className;
 
 
-	// Sort table based on selected rows. Requires Select Datatables extension
+	// Sort table based on selected rows. Requires Select DataTables extension
 	$.fn.dataTable.ext.order['select-checkbox'] = function ( settings, col ) {
 		return this.api().column( col, {order: 'index'} ).nodes().map( function ( td ) {
 			if ( settings._select.items === 'row' ) {
