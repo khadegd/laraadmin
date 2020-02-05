@@ -21,7 +21,7 @@
 		@endif
 		
 		<!-- Main content -->
-		<section class="content {{ $no_padding or '' }}">
+		<section class="content {{ $no_padding ?? '' }}">
 			<!-- Your Page Content Here -->
 			@yield('main-content')
 		</section><!-- /.content -->
