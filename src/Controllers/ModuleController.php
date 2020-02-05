@@ -165,11 +165,7 @@ class ModuleController extends Controller
         }
         
         // Delete Admin Routes
-        if(LAHelper::laravel_ver() == 5.3 || LAHelper::laravel_ver() == 5.4) {
-            $file_admin_routes = base_path("/routes/admin_routes.php");
-        } else {
-            $file_admin_routes = base_path("/app/Http/admin_routes.php");
-        }
+        $file_admin_routes = base_path("/routes/admin_routes.php");
         while(LAHelper::getLineWithString($file_admin_routes, "LA\\" . $module->name . "Controller") != -1) {
             $line = LAHelper::getLineWithString($file_admin_routes, "LA\\" . $module->name . 'Controller');
             $fileData = file_get_contents($file_admin_routes);

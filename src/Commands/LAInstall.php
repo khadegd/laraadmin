@@ -60,10 +60,9 @@ class LAInstall extends Command
                 $this->line("DB Assistant Initiated....");
                 $db_data = array();
                 
-                if(LAHelper::laravel_ver() == 5.3 || LAHelper::laravel_ver() == 5.4) {
-                    $db_data['host'] = $this->ask('Database Host', '127.0.0.1');
-                    $db_data['port'] = $this->ask('Database Port', '3306');
-                }
+                $db_data['host'] = $this->ask('Database Host', '127.0.0.1');
+                $db_data['port'] = $this->ask('Database Port', '3306');
+
                 $db_data['db'] = $this->ask('Database Name', 'laraadmin1');
                 $db_data['dbuser'] = $this->ask('Database User', 'root');
                 $dbpass = $this->ask('Database Password', false);
@@ -76,12 +75,10 @@ class LAInstall extends Command
                 
                 $default_db_conn = env('DB_CONNECTION', 'mysql');
                 
-                if(LAHelper::laravel_ver() == 5.3 || LAHelper::laravel_ver() == 5.4) {
-                    config(['database.connections.' . $default_db_conn . '.host' => $db_data['host']]);
-                    config(['database.connections.' . $default_db_conn . '.port' => $db_data['port']]);
-                    LAHelper::setenv("DB_HOST", $db_data['host']);
-                    LAHelper::setenv("DB_PORT", $db_data['port']);
-                }
+                config(['database.connections.' . $default_db_conn . '.host' => $db_data['host']]);
+                config(['database.connections.' . $default_db_conn . '.port' => $db_data['port']]);
+                LAHelper::setenv("DB_HOST", $db_data['host']);
+                LAHelper::setenv("DB_PORT", $db_data['port']);
                 
                 config(['database.connections.' . $default_db_conn . '.database' => $db_data['db']]);
                 config(['database.connections.' . $default_db_conn . '.username' => $db_data['dbuser']]);

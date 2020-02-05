@@ -51,23 +51,21 @@ class LAProvider extends ServiceProvider
         | Blade Directives for Entrust not working in Laravel 5.3
         |--------------------------------------------------------------------------
         */
-        if(LAHelper::laravel_ver() == 5.3 || LAHelper::laravel_ver() == 5.4) {
-            
-            // Call to Entrust::hasRole
-            Blade::directive('role', function ($expression) {
-                return "<?php if (\\Entrust::hasRole({$expression})) : ?>";
-            });
-            
-            // Call to Entrust::can
-            Blade::directive('permission', function ($expression) {
-                return "<?php if (\\Entrust::can({$expression})) : ?>";
-            });
-            
-            // Call to Entrust::ability
-            Blade::directive('ability', function ($expression) {
-                return "<?php if (\\Entrust::ability({$expression})) : ?>";
-            });
-        }
+        
+        // Call to Entrust::hasRole
+        Blade::directive('role', function ($expression) {
+            return "<?php if (\\Entrust::hasRole({$expression})) : ?>";
+        });
+        
+        // Call to Entrust::can
+        Blade::directive('permission', function ($expression) {
+            return "<?php if (\\Entrust::can({$expression})) : ?>";
+        });
+        
+        // Call to Entrust::ability
+        Blade::directive('ability', function ($expression) {
+            return "<?php if (\\Entrust::ability({$expression})) : ?>";
+        });
     }
     
     /**
@@ -167,9 +165,7 @@ class LAProvider extends ServiceProvider
         
         // LAForm Form Maker
         Blade::directive('la_form', function ($expression) {
-            if(LAHelper::laravel_ver() == 5.3 || LAHelper::laravel_ver() == 5.4) {
-                $expression = "(" . $expression . ")";
-            }
+            $expression = "(" . $expression . ")";
             return "<?php echo LAFormMaker::form$expression; ?>";
         });
         
